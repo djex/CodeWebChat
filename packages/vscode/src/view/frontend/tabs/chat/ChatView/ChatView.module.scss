@@ -1,7 +1,8 @@
 .container {
+  overflow-y: scroll;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: auto;
   padding: var(--padding-12px) 0;
 }
 
@@ -26,4 +27,8 @@
       text-decoration: underline;
     }
   }
+}
+
+.apply-copied-chat-response {
+  padding: 0 var(--padding-12px);
 }

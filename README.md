@@ -19,7 +19,7 @@
 
 ## What is CWC?
 
-CWC is a tool built by an independent developer enabling engineers getting the best quality AI-assistance with a game-changing cost efficiency.
+CWC is a non-agentic coding tool for AI-assisted programming built by an independent developer.
 
 🧩 Compatible with VS Code, Cursor and Windsurf<br/>
 ✌️ 100% free and open source!
@@ -27,9 +27,9 @@ CWC is a tool built by an independent developer enabling engineers getting the b
 **Guiding Principles:**
 
 - initialize popular chatbots—but don't game them
-- everything you need—nothing you don’t
+- API features—powerful yet simple to use
 - respect privacy—zero tracking
-- lightweight—under 1MB
+- lightweight—under 2MB
 
 **CWC is for you if:**
 
@@ -85,7 +85,7 @@ _(alphabetically)_
 - Qwen
 - Yuanbao
 
-The Connector extension is available in [Chrome Web Store](https://chromewebstore.google.com/detail/gemini-coder-connector/ljookipcanaglfaocjbgdicfbdhhjffp) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/gemini-coder-connector/).
+The Connector extension is available in [Chrome Web Store](https://chromewebstore.google.com/detail/code-web-chat-connector/ljookipcanaglfaocjbgdicfbdhhjffp) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/gemini-coder-connector/).
 
 > <small>**Legal Disclaimer:** After chat initialization, the extension does not read the incoming message. The injected _Apply response_ button is not a means of automatic output extraction, it's an alias for the original _copy to clipboard_ button.</small>
 
@@ -124,12 +124,12 @@ The tool is designed to provide you with the highest quality autocomplete sugges
 ✓ Includes selected context<br />
 ✓ Works great with any model
 
-### File refactoring
+### Refactoring
 
-Modify a file based on natural language instructions.
+Modify files based on natural language instructions.
 
 ✓ Includes selected context<br />
-✓ Reliable single-file edits
+✓ Like chat in diff edit format
 
 ### Commit messages
 
@@ -151,8 +151,7 @@ Generate meaningful commit messages. The tool first attaches affected files, the
 
 ### Refactoring
 
-- `Code Web Chat: Refactor` - Refactor active editor.
-- `Code Web Chat: Refactor to Clipboard` - Copy refactoring prompt to clipboard.
+- `Code Web Chat: Refactor` - Modify files based on natural language instructions.
 
 ### Applying chat responses
 
@@ -161,8 +160,8 @@ Generate meaningful commit messages. The tool first attaches affected files, the
 
 ### Chat
 
-- `Code Web Chat: Web Chat` - Open web chat with default preset.
-- `Code Web Chat: Web Chat with...` - Open web chat with preset selection.
+- `Code Web Chat: Chat` - Open web chat with default preset.
+- `Code Web Chat: Chat using...` - Open web chat with preset selection.
 - `Code Web Chat: Chat to Clipboard` - Enter instructions and copy to clipboard.
 
 ### Context

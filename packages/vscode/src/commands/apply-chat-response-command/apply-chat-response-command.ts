@@ -65,11 +65,11 @@ async function get_file_refactoring_config(
 
   if (file_refactoring_configs.length === 0) {
     vscode.window.showErrorMessage(
-      'File Refactoring API tool is not configured. Navigate to the Settings tab, configure API providers and setup the API tool.'
+      'Refactoring API tool is not configured. Navigate to the Settings tab, configure API providers and setup the API tool.'
     )
     Logger.warn({
       function_name: 'get_file_refactoring_config',
-      message: 'File Refactoring API tool is not configured.'
+      message: 'Refactoring API tool is not configured.'
     })
     return
   }
@@ -224,11 +224,11 @@ async function get_file_refactoring_config(
           )
           if (!provider) {
             vscode.window.showErrorMessage(
-              'API provider not found for File Refactoring tool. Navigate to the Settings tab, configure API providers and setup the API tool.'
+              'API provider not found for Refactoring tool. Navigate to the Settings tab, configure API providers and setup the API tool.'
             )
             Logger.warn({
               function_name: 'get_file_refactoring_config',
-              message: 'API provider not found for File Refactoring tool.'
+              message: 'API provider not found for Refactoring tool.'
             })
             resolve(undefined)
             return
@@ -256,11 +256,11 @@ async function get_file_refactoring_config(
 
   if (!provider) {
     vscode.window.showErrorMessage(
-      'API provider not found for File Refactoring tool. Navigate to the Settings tab, configure API providers and setup the API tool.'
+      'API provider not found for Refactoring tool. Navigate to the Settings tab, configure API providers and setup the API tool.'
     )
     Logger.warn({
       function_name: 'get_file_refactoring_config',
-      message: 'API provider not found for File Refactoring tool.'
+      message: 'API provider not found for Refactoring tool.'
     })
     return
   }
@@ -461,7 +461,7 @@ export function apply_chat_response_command(context: vscode.ExtensionContext) {
           // All patches applied successfully - show "Looks off" only if any used fallback
           const buttons = ['Revert']
           if (any_patch_used_fallback) {
-            buttons.push('Looks off, use intelligent mode')
+            buttons.push('Looks off, use intelligent update')
           }
 
           const response = await vscode.window.showInformationMessage(
@@ -474,7 +474,7 @@ export function apply_chat_response_command(context: vscode.ExtensionContext) {
           if (response == 'Revert' && all_original_states.length > 0) {
             await revert_files(all_original_states)
             context.workspaceState.update(LAST_APPLIED_CHANGES_STATE_KEY, null)
-          } else if (response == 'Looks off, use intelligent mode') {
+          } else if (response == 'Looks off, use intelligent update') {
             // Revert the applied patches first
             await revert_files(all_original_states)
 
@@ -541,14 +541,13 @@ export function apply_chat_response_command(context: vscode.ExtensionContext) {
                 )
               }
             } catch (error) {
-              // Handle any errors during intelligent update
               Logger.error({
                 function_name: 'apply_chat_response_command',
-                message: 'Error during intelligent update of all patches'
+                message: 'Error during refactoring of all patches'
               })
 
               vscode.window.showErrorMessage(
-                'Error during intelligent update. Original patches have been reverted.'
+                'Error during refactoring. Original patches have been reverted.'
               )
             }
           }
@@ -559,7 +558,7 @@ export function apply_chat_response_command(context: vscode.ExtensionContext) {
         // If no patches found, continue with regular file handling
         if (!clipboard_content.files || clipboard_content.files.length == 0) {
           vscode.window.showErrorMessage(
-            'Clipboard content must contain properly formatted code blocks. Each code block should start with a file path comment or be a diff.'
+            'Clipboard content must contain properly formatted code blocks. Each code block should start with a commented file path or be a diff.'
           )
           return
         }
@@ -707,7 +706,7 @@ export function apply_chat_response_command(context: vscode.ExtensionContext) {
           if (selected_mode_label == 'Fast replace') {
             const buttons = ['Revert']
             if (replaced_files_count > 0) {
-              buttons.push('Looks off, use intelligent mode')
+              buttons.push('Looks off, use intelligent update')
             }
 
             const response = await vscode.window.showInformationMessage(
@@ -721,7 +720,7 @@ export function apply_chat_response_command(context: vscode.ExtensionContext) {
                 LAST_APPLIED_CHANGES_STATE_KEY,
                 null
               )
-            } else if (response == 'Looks off, use intelligent mode') {
+            } else if (response == 'Looks off, use intelligent update') {
               // First revert the fast replace changes
               await revert_files(final_original_states)
 

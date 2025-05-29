@@ -16,11 +16,9 @@ import {
 } from './migrations'
 import {
   apply_chat_response_command,
-  refactor_commands,
-  refactor_to_clipboard_command,
   code_completion_commands,
-  web_chat_command,
-  web_chat_with_command,
+  chat_command,
+  chat_using_command,
   chat_to_clipboard_command,
   close_editor_command,
   close_all_editors_command,
@@ -40,7 +38,7 @@ import {
   reference_in_chat_command,
   open_settings_command,
   open_url_command,
-  agent_commands
+  refactor_commands
 } from './commands'
 
 // Store WebSocketServer instance at module level
@@ -103,28 +101,14 @@ export async function activate(context: vscode.ExtensionContext) {
     )
   }
 
-  // Register the custom open file command
   context.subscriptions.push(
-    open_file_from_workspace_command(open_editors_provider)
-  )
-
-  context.subscriptions.push(
+    open_file_from_workspace_command(open_editors_provider),
     apply_chat_response_command(context),
-    ...agent_commands({
-      context,
-      workspace_provider,
-      open_editors_provider
-    }),
     ...refactor_commands({
       context,
       workspace_provider,
       open_editors_provider
     }),
-    refactor_to_clipboard_command(
-      context,
-      workspace_provider,
-      open_editors_provider
-    ),
     ...code_completion_commands(
       workspace_provider,
       open_editors_provider,
@@ -150,13 +134,13 @@ export async function activate(context: vscode.ExtensionContext) {
       open_editors_provider,
       websocket_server_instance
     ),
-    web_chat_command(
+    chat_command(
       context,
       workspace_provider,
       open_editors_provider,
       websocket_server_instance
     ),
-    web_chat_with_command(
+    chat_using_command(
       context,
       workspace_provider,
       open_editors_provider,
@@ -187,7 +171,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }),
     open_url_command({
       command: 'codeWebChat.openX',
-      url: 'https://x.com/robertpiosik'
+      url: 'https://x.com/CodeWebChat'
     }),
     open_url_command({
       command: 'codeWebChat.openReddit',
